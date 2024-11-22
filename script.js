@@ -43,6 +43,9 @@ function deal() {
     checkPlayer21OrBust();
     // Check if dealer has 21
     checkDealer21OrBust();
+
+    getHandTotal(total);
+    playerHit();
 }
 
 // Fills deck array with card strings
@@ -147,7 +150,7 @@ function addHiddenCard() {
     let cardDiv = document.createElement("div");
     cardDiv.setAttribute("id", "hidden-card");
     cardDiv.setAttribute("class", "card");
-    cardDiv.style.backgroundColor = "cornflowerblue";
+    cardDiv.style.backgroundColor = "blue";
 
     document.getElementById("dealer-area").appendChild(cardDiv);
 }
@@ -320,7 +323,7 @@ function clearBoard() {
 }
 
 
-// ************************ ASSIGNMENT *********************************
+// ************************ ASSIGNMENT *********************************T
 // Complete the functions below to make this a fully functional Blackjack game
 // You should not need to modify any of the code above this section
 
@@ -332,14 +335,38 @@ function clearBoard() {
 // Once you get rest of the rest of the assignment completed, work on making this function
 // calculate the best hand total between A = 1 and A = 11. Hint: there can only be one high ace in a hand
 function getHandTotal(hand) {
+    let total = 0;
+    for (let i = 0; i < hand.length; i++){
+        let curr = hand[i].charAt(0);
+        if (curr == "A"){
+            total += 1;
+        } 
+        else if (curr == "J"){
+            total += 10;
+        }
+        else if (curr == "Q"){
+            total += 10;
+        }
+        else if (curr == "K"){
+            total += 10;
+        }
+        else {
+            parseInt(total);
+        }
+    }
 
+
+    return total;
 }
 
 // Adds a card to the player's hand array and updates UI with the card
 // TODO: Call this function from Hit button click
 // TODO: Implement this function
 function playerHit() {
-
+    let newCard = getCard();
+    addPlayerCard(newCard);
+    playerHand.push(newCard);
+    
 }
 
 // Adds a card to the dealer's hand array and updates UI with the card
